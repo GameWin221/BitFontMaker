@@ -11,6 +11,8 @@ if not os.path.exists(image_dir_path):
 
 image_file_paths = filter(lambda path: os.path.isfile(path), list(map(lambda file_path: os.path.join(image_dir_path, file_path), os.listdir(image_dir_path))))
 
+images_reversed = False
+
 images_data = {}
 images_width = -1
 images_height = -1
@@ -18,7 +20,7 @@ images_height = -1
 for image_path in image_file_paths:
     with Image.open(image_path) as img:
         image_name = image_path.split('/')[-1].split('\\')[-1].split('.')[0]
-
+    
         if not image_name.isdigit():
             print(f"Skipping \"{image_path}\" because it has an invalid name (it has to be the ascii index of a character)!")
             continue
@@ -34,7 +36,10 @@ for image_path in image_file_paths:
 
         bytes_per_row = (images_width + 7) // 8
 
-        pixels = list(reversed(img.getdata(0)))
+        pixels = list(img.getdata(0))
+        
+        if images_reversed:
+            pixels.reverse()
         
         final_bytes = [0] * images_height * bytes_per_row
 
