@@ -1,6 +1,6 @@
 # BitFontMaker
-Little python script that converts images to a source file with an array of the font's bytes.
-Makes the process of creating monospace bit fonts a *bit* easier when working with images. There is an example font included in the `example8x5` directory.
+Little python script that converts font's glyph images to a packed array of bits.
+Makes the process of creating bit fonts a *bit* easier when working with images. There is an example font included in the `example8x5` directory.
 
 # Supported conversions
 The script supports:
